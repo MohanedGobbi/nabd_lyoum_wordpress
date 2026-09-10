@@ -1,0 +1,12 @@
+{
+  "name": "nabd-aljazair-theme-build",
+  "private": true,
+  "description": "Build-only tooling for the نبض اليوم WordPress theme — not needed at runtime, only to (re)compile assets/css/main.css.",
+  "scripts": {
+    "build:css": "tailwindcss -i ./assets/css/input.css -o ./assets/css/main.css --minify",
+    "watch:css": "tailwindcss -i ./assets/css/input.css -o ./assets/css/main.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.10"
+  }
+}

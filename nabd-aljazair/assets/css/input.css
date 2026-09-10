@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-ink-900 antialiased;
+  }
+
+  ::selection {
+    @apply bg-brand/25 text-ink-950;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-ink-900/15 rounded-full;
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    @apply bg-white/15;
+  }
+
+  :focus-visible {
+    outline: 2px solid theme("colors.brand.DEFAULT");
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  /* Hand-rolled article typography (no @tailwindcss/typography dependency —
+     the content is plain paragraphs/headings/lists/quotes/images). */
+  .prose-nabd :where(p) {
+    margin-block: 1.1em;
+  }
+  .prose-nabd :where(h2) {
+    @apply mt-8 mb-3 text-[22px] font-extrabold text-ink-950 dark:text-white;
+  }
+  .prose-nabd :where(h3) {
+    @apply mt-6 mb-2 text-[19px] font-bold text-ink-950 dark:text-white;
+  }
+  .prose-nabd :where(a) {
+    @apply text-brand underline underline-offset-2;
+  }
+  .prose-nabd :where(ul, ol) {
+    @apply my-4 ms-5 space-y-1.5;
+  }
+  .prose-nabd :where(ul) {
+    list-style: disc;
+  }
+  .prose-nabd :where(ol) {
+    list-style: decimal;
+  }
+  .prose-nabd :where(blockquote) {
+    @apply border-e-4 border-brand bg-brand-50 px-4 py-3 text-ink-800 dark:bg-brand/10 dark:text-white/80;
+    margin-block: 1.5em;
+  }
+  .prose-nabd :where(img) {
+    @apply my-4 rounded-xl;
+  }
+  .prose-nabd :where(figcaption) {
+    @apply text-center text-[13px] text-ink-700/50 dark:text-white/40;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .num {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}

@@ -1,0 +1,19 @@
+/*
+Theme Name: نبض اليوم
+Theme URI: https://nabdaljazair.dz
+Author: نبض اليوم
+Author URI: https://nabdaljazair.dz
+Description: منصة إخبارية جزائرية — قالب ووردبريس مخصص، عربي بالكامل (RTL)، بألوان الهوية الحمراء/السوداء/البيضاء وتصنيفات ألوان ثابتة.
+Version: 1.0.0
+Requires at least: 6.4
+Requires PHP: 7.4
+Tested up to: 6.6
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: nabd-aljazair
+Tags: news, custom-colors, custom-menu, featured-images, rtl-language-support, translation-ready
+*/
+
+/* All real styling lives in assets/css/main.css (compiled from Tailwind and
+   enqueued in inc/enqueue.php). This file only needs to exist — and carry the
+   header comment above — for WordPress to recognize the theme. */

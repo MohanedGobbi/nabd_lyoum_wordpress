@@ -104,9 +104,9 @@ $nabd_drawer_icon_for = array(
 		</div>
 	</div>
 
-	<!-- Category nav (desktop) -->
-	<nav class="hidden border-b border-ink-900/8 bg-white dark:border-white/10 dark:bg-ink-950 lg:block">
-		<div class="mx-auto flex max-w-[1400px] cursor-grab items-center gap-6 overflow-x-auto px-6 select-none active:cursor-grabbing" data-nabd-drag-scroll>
+	<!-- Category nav: always visible (mobile included) as a slidable strip — never collapsed into the drawer only. -->
+	<nav class="border-b border-ink-900/8 bg-white dark:border-white/10 dark:bg-ink-950">
+		<div class="nabd-slider mx-auto flex max-w-[1400px] cursor-grab items-center gap-5 overflow-x-auto px-4 select-none active:cursor-grabbing lg:gap-6 lg:px-6" data-nabd-drag-scroll>
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>"
 			   class="relative shrink-0 whitespace-nowrap py-3.5 text-[15px] font-semibold transition-colors <?php echo is_front_page() ? 'text-brand' : 'text-ink-700 hover:text-ink-950 dark:text-white/60 dark:hover:text-white'; ?>">
 				<?php esc_html_e( 'الرئيسية', 'nabd-aljazair' ); ?>

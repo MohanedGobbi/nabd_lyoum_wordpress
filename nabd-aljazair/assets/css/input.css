@@ -90,4 +90,16 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
+  /* A horizontal strip meant to be slid, not scrolled with a visible
+     scrollbar: smooth touch momentum, no scrollbar chrome, in either
+     direction. Used by the category menu bar. */
+  .nabd-slider {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .nabd-slider::-webkit-scrollbar {
+    display: none;
+  }
 }

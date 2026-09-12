@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'NABD_VERSION', '1.0.0' );
+define( 'NABD_VERSION', '1.0.2' );
 define( 'NABD_DIR', get_template_directory() );
 define( 'NABD_URI', get_template_directory_uri() );
 

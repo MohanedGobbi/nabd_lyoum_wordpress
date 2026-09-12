@@ -30,10 +30,11 @@ function nabd_category_taxonomy() {
 }
 
 /**
- * Category identity colors — the same values as the site's original design
- * system. Light-mode text/background use the color as-is; dark-mode text
- * swaps to a lighter shade for the three hues too dark to read on a
- * near-black surface (aljazair, politics, video).
+ * Category identity colors. Light-mode text/background use the color as-is;
+ * dark_text is each hue's dark-mode-safe counterpart (lighter, so it still
+ * reads on a near-black surface) — aljazair and politics need it most since
+ * their light-mode hex is itself near-black/navy, but every category gets
+ * one for a consistent contract.
  */
 function nabd_category_colors() {
 	return array(
@@ -46,7 +47,7 @@ function nabd_category_colors() {
 		'tech'      => array( 'hex' => '#0f8fa8', 'dark_text' => '#22d3ee' ), // cyan-400
 		'culture'   => array( 'hex' => '#7c3aed', 'dark_text' => '#a78bfa' ), // violet-400
 		'varieties' => array( 'hex' => '#0d9488', 'dark_text' => '#2dd4bf' ), // teal-400
-		'video'     => array( 'hex' => '#334155', 'dark_text' => '#94a3b8' ), // slate-400
+		'video'     => array( 'hex' => '#ea580c', 'dark_text' => '#fb923c' ), // orange-600 / orange-400 — deliberately vivid so video content reads at a glance, unlike the muted slate it replaced
 	);
 }
 
@@ -70,17 +71,16 @@ add_action( 'after_switch_theme', 'nabd_create_default_categories' );
  * compiled Tailwind CSS never need to inline hex values by hand.
  */
 function nabd_category_color_vars() {
+	// :root and .dark both match <html>, at equal specificity — so whichever
+	// rule comes LAST in source order wins. The light-mode defaults must be
+	// declared first and the .dark override last, or dark mode silently loses.
 	$css = ':root{';
 	foreach ( nabd_category_colors() as $slug => $c ) {
-		$css .= "--cat-{$slug}:{$c['hex']};";
+		$css .= "--cat-{$slug}:{$c['hex']};--cat-{$slug}-text:{$c['hex']};";
 	}
 	$css .= '}.dark{';
 	foreach ( nabd_category_colors() as $slug => $c ) {
 		$css .= "--cat-{$slug}-text:{$c['dark_text']};";
-	}
-	$css .= '}:root{';
-	foreach ( nabd_category_colors() as $slug => $c ) {
-		$css .= "--cat-{$slug}-text:{$c['hex']};";
 	}
 	$css .= '}';
 	echo '<style id="nabd-category-vars">' . $css . '</style>'; // phpcs:ignore

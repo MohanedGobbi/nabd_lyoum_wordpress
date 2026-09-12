@@ -71,6 +71,15 @@ function nabd_currency_rates() {
 	);
 }
 
+/**
+ * Whether a post belongs to the "فيديو" category — used to overlay a small
+ * play badge on its thumbnail wherever it's shown as a card, so video
+ * content reads at a glance even outside the dedicated video rail.
+ */
+function nabd_post_is_video( $post_id ) {
+	return has_category( 'video', $post_id );
+}
+
 /** Excerpt trimmed to a fixed length, stripped of shortcodes/tags — used in the hero and article grid cards. */
 function nabd_card_excerpt( $post_id, $length = 22 ) {
 	$excerpt = get_the_excerpt( $post_id );

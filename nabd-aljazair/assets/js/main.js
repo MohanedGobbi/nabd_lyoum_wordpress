@@ -66,6 +66,52 @@
     }
   });
 
+  /* ---- Drag-to-scroll for the desktop category menu bar (mouse users get
+     the same free horizontal movement touch users already have) ---------- */
+  document.querySelectorAll("[data-nabd-drag-scroll]").forEach(function (el) {
+    var isDown = false;
+    var startX = 0;
+    var startScroll = 0;
+    var moved = false;
+
+    el.addEventListener("mousedown", function (e) {
+      isDown = true;
+      moved = false;
+      startX = e.clientX;
+      startScroll = el.scrollLeft;
+    });
+
+    window.addEventListener("mouseup", function () {
+      isDown = false;
+    });
+
+    el.addEventListener("mouseleave", function () {
+      isDown = false;
+    });
+
+    el.addEventListener("mousemove", function (e) {
+      if (!isDown) return;
+      var dx = e.clientX - startX;
+      if (Math.abs(dx) > 4) moved = true;
+      // RTL elements report scrollLeft in [-max, 0], the mirror image of the
+      // usual [0, max] — so the drag math flips sign versus an LTR bar.
+      // This site is RTL-only, so that's hardcoded rather than detected.
+      el.scrollLeft = startScroll + dx;
+    });
+
+    // A real drag shouldn't also follow the link it started on.
+    el.addEventListener(
+      "click",
+      function (e) {
+        if (moved) {
+          e.preventDefault();
+          moved = false;
+        }
+      },
+      true
+    );
+  });
+
   /* ---- Category-page tabs ------------------------------------------------ */
   document.querySelectorAll("[data-nabd-tabs]").forEach(function (tabBar) {
     var container = tabBar.parentElement;
